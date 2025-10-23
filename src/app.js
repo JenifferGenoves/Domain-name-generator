@@ -1,49 +1,72 @@
-import "bootstrap";
+/* import "bootstrap";
 import "./style.css";
 
 
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
+*/
+
 
 let pronoun = ['the', 'our', 'we', 'some', 'mine'];
 let adj = ['great', 'big', 'curious', 'confident', 'scared'];
 let noun = ['jogger', 'racoon', 'unicorn', 'rainbow','love'];
 
-// Generar index aleatorio
+const extension = '.com';
 
-function getRandomIndex (anyArray) {
-  return Math.floor(Math.random() * anyArray.length);
+function generateAllDomains () {
+console.log("Iniciando la generación de todos los dominios posibles...");
+
+let totalCombinations = 0;
+
+// Iterar sobre primer array
+for(let i = 0; i < pronoun.length; i++) {
+  const currentPronoun = pronoun[i];
   
-}
+  //Iterar sobre segundo array
+  for (let j = 0; j < adj.length; j++) {
+    const currentAdj = adj[j];
 
-// Generar domain
+    // Iterar sobre tercer array
+    for (let k = 0; k < noun.length; k++) {
+      const currentNoun = noun[k];
 
-function generateDomain () {
-  // 1. Agrupar arrays
-  let partsOfDomain = [pronoun, adj, noun];
-  // 2. Iniciar dominio
-  let domain = "";
-  // 3. Itera 4 veces (una por cada array)
-  for(let i = 0; i < partsOfDomain.length; i++) {
-  // 4. Obtiene un índice al azar para el array actual
-    let randomIndex = getRandomIndex(partsOfDomain[i]);
-  // 5. Agrega la palabra seleccionada
-    domain += partsOfDomain[i][randomIndex];
-  
+      // Juntar el dominio
+      const domain = currentPronoun + currentAdj + currentNoun + extension;
+
+      // Imprimir en la consola
+      console.log(domain);
+
+      totalCombinations ++;
+
+    }
   }
-    return domain + ".com";
+}
+console.log(`\nGeneración completada. Total de dominios generados: ${totalCombinations}`);
 }
 
+generateAllDomains();
 
-// Mostar en HTML
 
-window.onload = function() {
-  //write your code here
-  let domainElement = document.getElementById("domain");
-   domain.innerHTML = generateDomain();
 
-   document.getElementById("domain_btn").addEventListener('click',() => {
-    domainElement.textContent = generateDomain();
-   })
-};
+// for ...of
+
+function generateAllDomainsSimple () {
+  console.log("Iniciando la generación de dominios...\n");
+  const domains = []; 
+  for (const pronounItem of pronoun) {
+  for (const adjItem of adj) {
+    for (const nounItem of noun) {
+     /* const domain = pronounItem + adjItem + nounItem + extension;
+      console.log(domain); */
+      const domain = `${pronounItem}${adjItem}${nounItem}`;
+      domains.push(domain);
+    }
+  }
+}
+domains.forEach(d => console.log(d));
+
+console.log(`\nGeneración completada. Total: ${domains.length}`);
+return domains;
+}
+generateAllDomainsSimple();
