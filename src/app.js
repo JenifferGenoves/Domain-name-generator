@@ -13,28 +13,36 @@ let noun = ['jogger', 'racoon', 'unicorn', 'rainbow','love'];
 // Generar index aleatorio
 
 function getRandomIndex (anyArray) {
-  return Math.floor(Math.random() * anyArray.length);
-  
+ return Math.floor(Math.random() * anyArray.length);
 }
 
-// Generar domain
+// Generar domain método 1
 
 function generateDomain () {
-  // 1. Agrupar arrays
-  let partsOfDomain = [pronoun, adj, noun];
-  // 2. Iniciar dominio
-  let domain = "";
-  // 3. Itera 4 veces (una por cada array)
-  for(let i = 0; i < partsOfDomain.length; i++) {
-  // 4. Obtiene un índice al azar para el array actual
-    let randomIndex = getRandomIndex(partsOfDomain[i]);
-  // 5. Agrega la palabra seleccionada
-    domain += partsOfDomain[i][randomIndex];
-  
-  }
-    return domain + ".com";
-}
+ let partsOfDomain = [pronoun, adj, noun];
 
+ // 1.Usar map() para generar un arreglo de palabras seleccionadas al azar
+ let selectedWords = partsOfDomain.map(wordArray => {
+  let randomIndex = getRandomIndex(wordArray);
+  return wordArray[randomIndex];
+ });
+ // 2. Usar join('') para unir el arreglo de palabras en una sola cadena
+ let domain = selectedWords.join('');
+ return domain + '.com'
+}
+/*
+// Usando destructuración
+
+function generateDomainAlternative1 () {
+  let part1 = pronoun[getRandomIndex(pronoun)];
+  let part2 = adj[getRandomIndex(adj)];
+  let part3 = noun[getRandomIndex(noun)];
+
+  let domain = `${part1}${part2}${part3}`;
+
+  return domain + '.com';
+}
+*/
 
 // Mostar en HTML
 
