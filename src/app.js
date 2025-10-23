@@ -22,13 +22,13 @@ function getRandomIndex (anyArray) {
 function generateDomain () {
   // 1. Agrupar arrays
   let partsOfDomain = [pronoun, adj, noun];
-  // 2. Iniciar la excusa
+  // 2. Iniciar dominio
   let domain = "";
   // 3. Itera 4 veces (una por cada array)
   for(let i = 0; i < partsOfDomain.length; i++) {
   // 4. Obtiene un índice al azar para el array actual
     let randomIndex = getRandomIndex(partsOfDomain[i]);
-  // 5. Agrega la palabra seleccionad 
+  // 5. Agrega la palabra seleccionada
     domain += partsOfDomain[i][randomIndex];
   
   }
